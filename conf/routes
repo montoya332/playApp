@@ -6,9 +6,9 @@
 GET		/							controllers.ApplicationController.index
 
 # Authentication
-GET     /login                      controllers.ApplicationController.login
-POST    /login                      controllers.ApplicationController.authenticate
-GET     /logout                     controllers.ApplicationController.logout
+GET     /login                      controllers.AuthenticationController.login
+POST    /login                      controllers.AuthenticationController.authenticate
+GET     /logout                     controllers.AuthenticationController.logout
 
 # Map static resources from the /public folder to the /assets URL path
 GET		/assets/*file				controllers.Assets.versioned(path="/public", file: Asset)
