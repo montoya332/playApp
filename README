@@ -1,0 +1,13 @@
+Play application
+=================================
+
+This file will be packaged with your application when using `activator dist`.
+
+To run "playAppV1" from the command line, "cd playAppV1" then:
+/Users/arturo/Documents/github/playAppV1/activator run
+
+To run the test for "playAppV1" from the command line, "cd playAppV1" then:
+/Users/arturo/Documents/github/playAppV1/activator test
+
+To run the Activator UI for "playAppV1" from the command line, "cd playAppV1" then:
+/Users/arturo/Documents/github/playAppV1/activator ui
