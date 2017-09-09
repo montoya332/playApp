@@ -15,9 +15,6 @@ object PetShop extends Franchise {
   private val items = TrieMap.empty[Long, PetItem]
   private val seq = new AtomicLong
 
-  items.put(1, PetItem(1, "Kuma", 3000) )
-  items.put(2, PetItem(2, "Rex", 3000) )
-
   def list(): Seq[PetItem] = items.values.to[Seq]
 
   def details(id: Long) = items.get(id)

@@ -18,7 +18,11 @@ class PetItemsController @Inject() extends Controller {
   }
   val petShop = models.PetShop
 
-  def index = Action { NotImplemented }
+  def initialize = Action {
+    petShop.create("Kuma", 3000 )
+    petShop.create("Rex", 3000 )
+    Ok("Created Two Items")
+  }
   def list = Action{
     Ok(Json.toJson(petShop.list))
   }
