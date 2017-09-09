@@ -7,9 +7,11 @@ import play.api.libs.json._
 
 @Singleton
 class PetItemsController @Inject() extends Controller {
-  case class PetItem(id: Long, name: String, price: Double)
-  implicit val readsPet_Item = Json.reads[PetItem]
-  implicit val pet_ItemWrites = new Writes[PetItem] {
+  case class PetItem(id: Long, name: String, price: Double){
+    println(s"My name is $name")
+  }
+  implicit val readsPetItem = Json.reads[PetItem]
+  implicit val petItemWrites = new Writes[PetItem] {
     def writes(pet: PetItem) = Json.obj(
       "id" -> pet.id,
       "name" -> pet.name,
