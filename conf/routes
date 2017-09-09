@@ -13,5 +13,5 @@ GET     /logout                     controllers.AuthenticationController.logout
 # Map static resources from the /public folder to the /assets URL path
 GET		/assets/*file				controllers.Assets.versioned(path="/public", file: Asset)
 GET     /pets                       controllers.PetItemsController.list
-GET     /pets/:id                   controllers.PetItemsController.detail(id: Long)
+GET     /pets/:id                   controllers.PetItemsController.details(id: Long)
 

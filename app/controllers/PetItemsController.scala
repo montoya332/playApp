@@ -1,15 +1,13 @@
 package controllers
 
 import javax.inject.{Inject, Singleton}
+import models.PetItem
 
 import play.api.mvc.{Action, Controller}
 import play.api.libs.json._
 
 @Singleton
 class PetItemsController @Inject() extends Controller {
-  case class PetItem(id: Long, name: String, price: Double){
-    println(s"My name is $name")
-  }
   implicit val readsPetItem = Json.reads[PetItem]
   implicit val petItemWrites = new Writes[PetItem] {
     def writes(pet: PetItem) = Json.obj(
@@ -18,15 +16,14 @@ class PetItemsController @Inject() extends Controller {
       "price" -> pet.price
     )
   }
-  val pet = PetItem(1,"kuma",30000)
+  val petShop = models.PetShop
 
   def index = Action { NotImplemented }
   def list = Action{
-    val list: Seq[PetItem] = Seq(pet)
-    Ok(Json.toJson(list))
+    Ok(Json.toJson(petShop.list))
   }
-  def detail(id: Long) = Action{
-    Ok(Json.toJson(pet) )
+  def details(id: Long) = Action{
+    Ok(Json.toJson(petShop.details(1)))
   }
   def create = Action{ NotImplemented }
   def update = Action{ NotImplemented }
