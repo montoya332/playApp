@@ -7,13 +7,26 @@ import play.api.libs.json._
 
 @Singleton
 class PetItemsController @Inject() extends Controller {
-
-  def index = Action{
-    Ok(Json.obj(
-      "id" -> 1,
-      "name" -> "Kuma",
-      "price" -> 30000
-    ))
+  case class PetItem(id: Long, name: String, price: Double)
+  implicit val readsPet_Item = Json.reads[PetItem]
+  implicit val pet_ItemWrites = new Writes[PetItem] {
+    def writes(pet: PetItem) = Json.obj(
+      "id" -> pet.id,
+      "name" -> pet.name,
+      "price" -> pet.price
+    )
   }
-  def list = Action{ NotImplemented }
+  val pet = PetItem(1,"kuma",30000)
+
+  def index = Action { NotImplemented }
+  def list = Action{
+    val list: Seq[PetItem] = Seq(pet)
+    Ok(Json.toJson(list))
+  }
+  def detail(id: Long) = Action{
+    Ok(Json.toJson(pet) )
+  }
+  def create = Action{ NotImplemented }
+  def update = Action{ NotImplemented }
+  def delete = Action{ NotImplemented }
 }
