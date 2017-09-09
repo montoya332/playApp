@@ -23,7 +23,10 @@ class PetItemsController @Inject() extends Controller {
     Ok(Json.toJson(petShop.list))
   }
   def details(id: Long) = Action{
-    Ok(Json.toJson(petShop.details(1)))
+    petShop.details(id) match {
+      case Some(item) => Ok(Json.toJson(item))
+      case None => NotFound
+    }
   }
   def create = Action{ NotImplemented }
   def update = Action{ NotImplemented }
