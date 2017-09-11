@@ -32,7 +32,15 @@ class PetItemsController @Inject() extends Controller {
       case None => NotFound
     }
   }
-  def create = Action{ NotImplemented }
-  def update = Action{ NotImplemented }
-  def delete = Action{ NotImplemented }
+  def create = Action(parse.json) { request =>
+    (request.body \ "name").asOpt[String].map { name =>
+      Ok("Hello " + name)
+    }.getOrElse {
+      BadRequest("Missing parameter [name]")
+    }
+  }
+
+
+  def update(id: Long) = Action{ NotImplemented }
+  def delete(id: Long) = Action{ NotImplemented }
 }

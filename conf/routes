@@ -14,6 +14,9 @@ GET     /logout                     controllers.AuthenticationController.logout
 GET		/assets/*file				controllers.Assets.versioned(path="/public", file: Asset)
 GET     /pets                       controllers.PetItemsController.list
 GET     /pets/initialize            controllers.PetItemsController.initialize
+POST    /pets                       controllers.PetItemsController.create
 GET     /pets/:id                   controllers.PetItemsController.details(id: Long)
+PUT     /pets/:id                   controllers.PetItemsController.update(id: Long)
+DELETE  /pets/:id                   controllers.PetItemsController.delete(id: Long)
 
 
