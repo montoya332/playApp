@@ -40,5 +40,10 @@ class PetController @Inject() extends Controller {
 	}
 	
 	def update(id: Long) = Action{ NotImplemented }
-	def delete(id: Long) = Action{ NotImplemented }
+	def delete(id: Long) = Action{
+		petShop.delete(id) match {
+			case true => Ok("Bye " + id)
+			case false => NotFound
+		}
+	}
 }
