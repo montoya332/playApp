@@ -20,7 +20,7 @@ class PetController @Inject() extends Controller {
 	def initialize = Action {
 		petShop.create("Kuma", 3000 )
 		petShop.create("Rex", 3000 )
-		Ok("Created Two Items")
+		Ok(s"Pet Shop Count ${petShop.size}")
 	}
 	def list = Action{
 		Ok(Json.toJson(petShop.list))

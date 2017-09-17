@@ -29,6 +29,7 @@ object PetShop extends Franchise {
 		items.put(id, item)
 		Some(item)
 	}
+	def size(): Int = list().size
 }
 class PetId private (val underlying: Int) extends AnyVal {
 	override def toString: String = underlying.toString
