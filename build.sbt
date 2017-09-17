@@ -10,6 +10,6 @@ libraryDependencies ++= Seq(
   jdbc,
   cache,
   ws,
+  "com.netaporter" %% "scala-uri" % "0.4.14",
   "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test
 )
-
