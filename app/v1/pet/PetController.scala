@@ -24,13 +24,12 @@ class PetController @Inject() extends Controller {
 	def list = Action{
 		Ok(Json.toJson(petShop.list))
 	}
-	def details(id: String) = Action{ NotImplemented }
-	// Action{
-	// petShop.details(id) match {
-	// 	case Some(item) => Ok("Ok(Json.toJson(item))")
-	// 	case None => NotFound
-	// 	}
-	// }
+	def details(id: Long) = Action{
+		petShop.details(id) match {
+			case Some(item) => Ok(Json.toJson(item))
+			case None => NotFound
+		}
+	}
 	def create = Action(parse.json) { request =>
 		(request.body \ "name").asOpt[String].map { name =>
 			Ok("Hello " + name)
@@ -38,8 +37,7 @@ class PetController @Inject() extends Controller {
 			BadRequest("Missing parameter [name]")
 		}
 	}
-
-
-	def update(id: String) = Action{ NotImplemented }
-	def delete(id: String) = Action{ NotImplemented }
+	
+	def update(id: Long) = Action{ NotImplemented }
+	def delete(id: Long) = Action{ NotImplemented }
 }
