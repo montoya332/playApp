@@ -8,21 +8,25 @@ import play.api.libs.json.{ JsValue, Json }
 
 @Singleton
 class AuthenticationController @Inject() extends Controller {
-	def Response(data: JsValue = Json.obj(), success: Boolean = true): JsValue = {
+	def Response(data:Any, success: Boolean = true): JsValue = {
+		val response: JsValue = data match {
+			case x:JsValue => x
+			case _ => Json.parse(data.toString)
+		}
 		Json.obj(
-			"data" -> data,
-			"success" -> success,
-			"time" -> Calendar.getInstance().getTime.toString
-		)
+				"data" -> response,
+				"success" -> success,
+				"time" -> Calendar.getInstance().getTime.toString
+			)
 	}
 	def login = Action {
-		Ok(Response(Json.parse("{\"user\":123}")))
+		Ok(Response("{\"user\":123}"))
 	}
 	def authenticate = Action {
-		Ok(Response(Json.parse("{\"user\":123}")))
+		Ok(Response("{\"user\":123}"))
 	}
 	def logout = Action {
-		Ok(Response(Json.parse("{\"user\":123}")))
+		Ok(Response("{\"user\":123}"))
 	}
 
 }
