@@ -3,23 +3,24 @@ package v1.pet
 import javax.inject.{Inject, Singleton}
 import play.api.mvc.{Action, Controller}
 import play.api.libs.json._
+import v1.pet.{PetItem, PetShop}
 
 @Singleton
 class PetController @Inject() extends Controller {
-	implicit val readsPetItem = Json.reads[models.PetItem]
-	implicit val petItemWrites = new Writes[models.PetItem] {
-		def writes(pet: models.PetItem) = Json.obj(
+	implicit val readsPetItem = Json.reads[PetItem]
+	implicit val petItemWrites = new Writes[PetItem] {
+		def writes(pet: PetItem) = Json.obj(
 			"id" -> pet.id,
 			"name" -> pet.name,
 			"price" -> pet.price
 		)
 	}
-	val petShop = models.PetShop
+	val petShop = PetShop
 
 	def initialize = Action {
 		petShop.create("Kuma", 3000 )
 		petShop.create("Rex", 3000 )
-		Ok("Created Two Items")
+		Ok(s"Pet Shop Count ${petShop.size}")
 	}
 	def list = Action{
 		Ok(Json.toJson(petShop.list))
@@ -39,5 +40,10 @@ class PetController @Inject() extends Controller {
 	}
 	
 	def update(id: Long) = Action{ NotImplemented }
-	def delete(id: Long) = Action{ NotImplemented }
+	def delete(id: Long) = Action{
+		petShop.delete(id) match {
+			case true => Ok("Bye " + id)
+			case false => NotFound
+		}
+	}
 }
