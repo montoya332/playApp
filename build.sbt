@@ -11,5 +11,8 @@ libraryDependencies ++= Seq(
   cache,
   ws,
   "com.netaporter" %% "scala-uri" % "0.4.14",
-  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test
+  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test,
+
+  evolutions,
+  "org.postgresql"         % "postgresql"                        % "42.1.4"
 )

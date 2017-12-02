@@ -2,15 +2,17 @@
 
 # --- !Ups
 
-CREATE TABLE User (
-    id bigint(20) NOT NULL AUTO_INCREMENT,
-    email varchar(255) NOT NULL,
-    password varchar(255) NOT NULL,
-    fullname varchar(255) NOT NULL,
+
+CREATE TABLE users (
+    id              varchar PRIMARY KEY CONSTRAINT no_null NOT NULL,
+    email           varchar NOT NULL,
+    password        varchar CONSTRAINT no_null NOT NULL,
+    fullname        varchar CONSTRAINT no_null NOT NULL,
     isAdmin boolean NOT NULL,
-    PRIMARY KEY (id)
+    created         TIMESTAMP CONSTRAINT no_null NOT NULL DEFAULT now(),
+    archived        TIMESTAMP
 );
 
 # --- !Downs
 
-DROP TABLE User;
+DROP TABLE users;
