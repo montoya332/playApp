@@ -6,6 +6,8 @@ import akka.stream.Materializer
 import play.api.Logger
 import play.api.mvc._
 import scala.concurrent.{ExecutionContext, Future}
+import play.api.routing.Router.Tags
+
 /**
   * This is a simple filter that adds a header to all requests. It's
   * added to the application's list of filters by the
@@ -26,10 +28,13 @@ class LoggingFilter @Inject() (implicit val mat: Materializer, ec: ExecutionCont
 
     nextFilter(requestHeader).map { result =>
 
+      val action = requestHeader.tags(Tags.RouteController) +
+        "." + requestHeader.tags(Tags.RouteActionMethod)
       val endTime = System.currentTimeMillis
       val requestTime = endTime - startTime
 
-      Logger.info(s"${requestHeader.method} ${requestHeader.uri} took ${requestTime}ms and returned ${result.header.status}")
+      Logger.info(s"${action} took ${requestTime}ms and returned ${result.header.status}")
+
       result.withHeaders("X-test" -> "foo")
       result.withHeaders("Request-Time" -> requestTime.toString)
     }
