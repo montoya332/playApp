@@ -5,6 +5,8 @@ import play.api._
 import play.api.mvc._
 import java.util.Calendar
 import play.api.libs.json.{ JsValue, Json }
+import play.filters.csrf._
+import play.filters.csrf.CSRF.Token
 
 @Singleton
 class AuthenticationController @Inject() extends Controller {
