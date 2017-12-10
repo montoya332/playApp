@@ -4,6 +4,8 @@
 
 # Home page
 GET		/							controllers.ApplicationController.index
+GET     /login                      controllers.AuthenticationController.login()
+
 
 #Pets
 ->		/v1/pets 					v1.pet.PetRouter

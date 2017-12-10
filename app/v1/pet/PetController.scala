@@ -3,7 +3,6 @@ package v1.pet
 import javax.inject.{Inject, Singleton}
 import play.api.mvc.{Action, Controller}
 import play.api.libs.json._
-import v1.pet.{PetItem, PetShop}
 
 @Singleton
 class PetController @Inject() extends Controller {
