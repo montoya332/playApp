@@ -1,8 +1,5 @@
 package v1.pet
 
-import javax.inject.{Inject, Singleton}
-
-import scala.concurrent.Future
 import java.util.concurrent.atomic.AtomicLong
 import scala.collection.concurrent.TrieMap
 
